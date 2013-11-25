@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Easeljs fork by JermSharWebs</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Easeljs fork</h1>
+          <h2>The Easel Javascript library provides a full, hierarchical display list, a core interaction model, and helper classes to make working with the HTML5 Canvas element much easier.</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/JermSharWebs/EaselJS/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/JermSharWebs/EaselJS/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/JermSharWebs/EaselJS" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a name="easeljs" class="anchor" href="#easeljs"><span class="octicon octicon-link"></span></a>EaselJS</h1>
+
+<p>EaselJS is a library to make working with the Canvas element easier. It provides a display list to allow you to work with display elements on a canvas as nested objects. It also provides a simple framework for providing shape based mouse interactions on elements in the display list. This is useful for games, generative art, and other highly graphical experiences.</p>
+
+<h2>
+<a name="simple-example" class="anchor" href="#simple-example"><span class="octicon octicon-link"></span></a>Simple Example</h2>
+
+<pre><code>//Draw a square on screen.
+var canvas = document.getElementById('canvas');
+var stage = new createjs.Stage(canvas);
+var shape = new createjs.Shape();
+shape.graphics.beginFill('rgba(255,0,0,1)').drawRoundRect(0, 0, 120, 120, 10);
+stage.addChild(shape);
+stage.update();
+</code></pre>
+
+<h2>
+<a name="animation-example" class="anchor" href="#animation-example"><span class="octicon octicon-link"></span></a>Animation Example</h2>
+
+<pre><code>var ss = new createjs.SpriteSheet({
+    "frames": {
+        "width": 200,
+        "numFrames": 64,
+        "regX": 2,
+        "regY": 2,
+        "height": 361
+    },
+    "animations": {"jump": [26, 63], "run": [0, 25]},
+    "images": ["./assets/runningGrant.png"]
+});
+
+ss.getAnimation("run").speed = 2;
+ss.getAnimation("run").next = "jump";
+ss.getAnimation("jump").next = "run";
+
+var sprite = new createjs.Sprite(ss, "run");
+sprite.scaleY = sprite.scaleX = 0.4;
+
+createjs.Ticker.setFPS(60);
+createjs.Ticker.addEventListener("tick", stage);
+stage.addChild(sprite);
+</code></pre>
+
+<h2>
+<a name="support-and-resources" class="anchor" href="#support-and-resources"><span class="octicon octicon-link"></span></a>Support and Resources</h2>
+
+<ul>
+<li>Find examples and more information at the <a href="http://easeljs.com/">EaselJS web site</a>
+</li>
+<li>Read the <a href="http://createjs.com/Docs/EaselJS">documentation</a>
+</li>
+<li>Post questions and interact with other users at our <a href="http://community.createjs.com">Community</a> site.</li>
+<li>There is a <a href="http://groups.google.com/group/createjs-discussion">Google Group</a> for discussions and support.</li>
+<li>Have a look at the included <a href="https://github.com/CreateJS/EaselJS/tree/master/examples">examples</a> and <a href="http://createjs.com/Docs/EaselJS/">API documentation</a> for more in-depth information.</li>
+</ul><p>It was built by <a href="http://www.gskinner.com">gskinner.com</a>, and is released for free under the MIT license, which means you
+can use it for almost any purpose (including commercial projects). We appreciate credit where possible, but it is not a requirement.</p>
+
+<h2>
+<a name="classes" class="anchor" href="#classes"><span class="octicon octicon-link"></span></a>Classes</h2>
+
+<p>The API is inspired by Flash's display list, and should be easy to pick up for both JS and AS3 developers. Check out the <a href="http://createjs.com/Docs/EaselJS/">docs</a> for more information.</p>
+
+<p><strong>DisplayObject</strong>
+Abstract base class for all display elements in EaselJS. Exposes all of the display properties (ex. x, y, rotation, scaleX, scaleY, skewX, skewY, alpha, shadow, etc) that are common to all display objects.</p>
+
+<p><strong>Stage</strong>
+The root level display container for display elements. Each time tick() is called on Stage, it will update and render the display list to its associated canvas.</p>
+
+<p><strong>Container</strong>
+A nestable display container, which lets you aggregate display objects and manipulate them as a group.</p>
+
+<p><strong>Bitmap</strong>
+Draws an image, video or canvas to the canvas according to its display properties.</p>
+
+<p><strong>Sprite</strong>
+Displays single frames or animations from sprite sheets, and provides APIs for managing playback and sequencing.</p>
+
+<p><strong>Shape</strong>
+Renders a Graphics object within the context of the display list.</p>
+
+<p><strong>Graphics</strong>
+Provides an easy to use API for drawing vector data. Can be used with Shape, or completely stand alone.</p>
+
+<p><strong>Text</strong>
+Renders a single line of text to the stage.</p>
+
+<p><strong>DOMElement</strong>
+An experimental display object that allows you to manage an HTML element as a part of the display list.</p>
+
+<p><strong>Filter</strong>
+The base filter class that other filters (ex. BlurFilter, ColorMatrixFilter, etc) extend.</p>
+
+<p>There are also a few helper classes included:</p>
+
+<p><strong>Shadow</strong>
+Defines all of the properties needed to display a shadow on a display object.</p>
+
+<p><strong>Ticker</strong>
+Provides a pausable centralized tick manager for ticking Stage instances or other time based code.</p>
+
+<p><strong>UID</strong>
+Very simple class that provides global, incremental unique numeric IDs.</p>
+
+<p><strong>SpriteSheet</strong>
+Encapsulates all the data associated with a sprite sheet to be used with Sprite.</p>
+
+<p><strong>SpriteSheetUtils</strong>
+Contains utility methods for extending existing sprite sheets with flipped frames and extracting individual frames.</p>
+
+<p><strong>SpriteSheetBuilder</strong>
+Build a bitmap SpriteSheet from vector graphics at run time. Get the filesize savings of vector, with the performance
+of a SpriteSheet.</p>
+
+<p><strong>Matrix2D</strong>
+Represents a 3x3 affine transformation matrix. Used internally for calculating concatenated transformations.</p>
+
+<p><strong>Rectangle</strong>
+Represents a rectangle as defined by the points (x, y) and (x+width, y+height).</p>
+
+<p><strong>Point</strong>
+Represents a point on a 2 dimensional x / y coordinate system.</p>
+        </section>
+
+        <footer>
+          Easeljs fork is maintained by <a href="https://github.com/JermSharWebs">JermSharWebs</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
